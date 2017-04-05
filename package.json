@@ -1,0 +1,19 @@
+{
+  "name": "installed-fonts",
+  "version": "1.0.0",
+  "description": "Get list of installed fonts",
+  "icon": "icon.png",
+  "main": "installed-fonts.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solsort/installed-fonts.git"
+  },
+  "author": "RasmusErik Voel Jensen <npmjs@solsort.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solsort/installed-fonts/issues"
+  },
+  "homepage": "https://installed-fonts.solsort.com/",
+  "dependencies": {},
+  "devDependencies": {}
+}
