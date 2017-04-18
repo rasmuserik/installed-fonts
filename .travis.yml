@@ -1,3 +1,10 @@
 language: node_js
 node_js:
-  - node
+- node
+deploy:
+  provider: npm
+  email: npmjs@solsort.com
+  api_key:
+    secure: glbIUV0tuP4DNk5K/otAYtQzKKw7/Yos8UyQUq3863vqIIXxOLNn5GOZ1UhFlIepOIKFPCm0X4AFDpzdJYUu5Mkk07O5MV8ZWywde/UlgcqL0JrNlsp+YXZRkHWx+XdDEyx06cVQG+nfIdHVQNatBFHM9SmjYQIbKh6B1iEABkh8Sf7c4Oh6vDaSrGLQYC+Zb+rUqO+NoRnpuhSkGw1xgCzgsHvGXyLsWtg7BlStKTy4sYco7+kVYO1ddGSDkkxj6ViqpbG4f/WNDCgT9MY/m6XriGvSom0juv4JQnbGnqZ9aVTfNR5hvQOFtDPlykvSCELfTsUW/Hk5H9j6bDDLQjkp7bPDi3fzlADX67IhdMJiYsqVCS2GVDkdMA+KCFnkZ4dwzHymVgGmLiMIjHJ+r1kEHJdCmVDF2PzzfJlohsL5zsJhBcZj7ovzhPqfOQ+uexl7Lb6yXLEuKZkn/kuxfmBBJuRSk/+0rwoCoFf8Tqj1ayZfXtqhS4icOgqYSv7+Vyux5T6GLsDUO811aHmr6JoK/FsGNxEVFmh56CEqLV3CM1IfJOQm5qOeVhl7j1+fw0EDhsNvUTByaXqbuZc5Vn4Ah8UaYee02321WBXQ1pqwlIRKxgAehQAiSPGV+/Br1oFvY9+4SR+FIUsnLSgOxS+AZKYr1H+CxJoB1Fj/JxE=
+  on:
+    repo: solsort/installed-fonts
