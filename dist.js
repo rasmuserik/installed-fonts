@@ -1,3 +1,87 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 // # Get the list of installed fonts
 //
 // Sample usage:
@@ -18,69 +102,62 @@
 //
 // # Actual source code
 //
-exports.installedFonts = async () => {
+exports.installedFonts = _asyncToGenerator(function* () {
 
   let execSync;
 
   // Try to get the fonts via system_profiler (may work on OS-X, not tested)
 
   try {
-    let fontList = execSync('system_profiler SPFontsDataType ' +
-      '| grep Family:')
-      .split('\n')
-      .replace('Family:', '')
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
+    let fontList = execSync('system_profiler SPFontsDataType ' + '| grep Family:').split('\n').replace('Family:', '').map(function (s) {
+      return s.trim();
+    }).filter(function (s) {
+      return s.length > 0;
+    });
     fontList = Array.from(new Set(fontList));
 
-    if(fontList.length) {
+    if (fontList.length) {
       return fontList;
     }
+  } catch (e) {}
+  /* do nothing, fall through to next attempt */
 
-  } catch(e) {
-    /* do nothing, fall through to next attempt */
-  }
 
   // Try to get the fonts via fc-list (should work on linux etc.)
 
   try {
-    execSync = require('child_process').execSync;
-    let fontList = execSync('fc-list', {encoding: 'utf-8'})
-      .split('\n')
-      .map(s => s.split(':')[1])
-      .join(',').split(',')
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
+    execSync = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"child_process\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).execSync;
+    let fontList = execSync('fc-list', { encoding: 'utf-8' }).split('\n').map(function (s) {
+      return s.split(':')[1];
+    }).join(',').split(',').map(function (s) {
+      return s.trim();
+    }).filter(function (s) {
+      return s.length > 0;
+    });
     fontList = Array.from(new Set(fontList));
 
-    if(fontList.length) {
+    if (fontList.length) {
       return fontList;
     }
+  } catch (e) {}
+  /* do nothing, fall through to next attempt */
 
-  } catch(e) {
-    /* do nothing, fall through to next attempt */
-  }
 
   // Try to get the fonts via powershell (should work on windows)
 
   try {
-    let fontList = execSync('powershell \'' +
-      '[void] [System.Reflection.Assembly]::' +
-      'LoadWithPartialName(\"System.Drawing\");' +
-      '(New-Object System.Drawing.Text.InstalledFontCollection)' +
-      '.Families\'', {encoding: 'utf-8'})
-      .split('\n')
-      .slice(2)
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
+    let fontList = execSync('powershell \'' + '[void] [System.Reflection.Assembly]::' + 'LoadWithPartialName(\"System.Drawing\");' + '(New-Object System.Drawing.Text.InstalledFontCollection)' + '.Families\'', { encoding: 'utf-8' }).split('\n').slice(2).map(function (s) {
+      return s.trim();
+    }).filter(function (s) {
+      return s.length > 0;
+    });
 
-    if(fontList.length) {
+    if (fontList.length) {
       return fontList;
     }
+  } catch (e) {}
+  /* do nothing, fall through to next attempt */
 
-  } catch(e) {
-    /* do nothing, fall through to next attempt */
-  }
 
   // Probe through predefined list on browser
 
@@ -92,31 +169,29 @@ exports.installedFonts = async () => {
     let result = [];
     ctx.font = `12px sans-serif`;
     let w0 = ctx.measureText('i').width;
-    for(let i = 0; i < fonts.length; ++i) {
-      if(i & 63 === 0) {
-        await wait();
+    for (let i = 0; i < fonts.length; ++i) {
+      if (i & 63 === 0) {
+        yield wait();
       }
       let font = fonts[i];
       ctx.font = `12px "${font}", sans-serif`;
       let w1 = ctx.measureText('i').width;
-      if(w1 === w0) {
+      if (w1 === w0) {
         ctx.font = `12px "${font}", monospace`;
         let w2 = ctx.measureText('i').width;
-        if(w1 !== w2) {
+        if (w1 !== w2) {
           continue;
         }
-
       }
       result.push(font);
     }
     return result;
-
-  } catch(e) {
+  } catch (e) {
     /* do nothing, fall through to next attempt */
   }
 
   throw 'not implemented on this platform';
-};
+});
 
 // ## Wait utility function
 
@@ -124,19 +199,18 @@ function wait() {
   return new Promise(resolve => setTimeout(resolve, 0));
 }
 
-
 // ## main/test
 
-exports.main = async () => {
-  window.app.innerHTML = 'Fonts found: <div style=font-size:8px>' + 
-    (await exports.installedFonts()).join(', ') + '</div>';
+exports.main = _asyncToGenerator(function* () {
+  window.app.innerHTML = 'Fonts found: <div style=font-size:8px>' + (yield exports.installedFonts()).join(', ') + '</div>';
+});
+
+if ("function" === 'function' && __webpack_require__.c[__webpack_require__.s] === module) {
+  module.exports().then(o => o.map(s => console.log(s)));
 }
 
-if(typeof require === 'function' && require.main === module) {
-  module.exports().then(o=>o.map(s=>console.log(s)));
-}
-
-function fontList() { // ##
+function fontList() {
+  // ##
   return `
 3x3
 Aakar
@@ -1787,5 +1861,46 @@ Zapfino
 Zapf Renaissance
 Zeyada
 Zurich
-`.split('\n').filter(o=>o);
+`.split('\n').filter(o => o);
 }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(0);
+
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=dist.js.map

@@ -1,7 +1,7 @@
 {
   "name": "installed-fonts",
-  "version": "1.0.0",
-  "description": "Get list of installed fonts",
+  "version": "0.0.1",
+  "description": "JavaScript module that lists installed fonts.",
   "icon": "icon.png",
   "main": "installed-fonts.js",
   "repository": {
@@ -15,5 +15,13 @@
   },
   "homepage": "https://installed-fonts.solsort.com/",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "simple-javascript": "*"
+  },
+  "scripts": {
+    "release": "simple-javascript release",
+    "dev": "simple-javascript dev",
+    "test": "simple-javascript test"
+  },
+  "unpkg": "dist.js"
 }
