@@ -1,6 +1,6 @@
 {
   "name": "installed-fonts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript module that lists installed fonts.",
   "icon": "icon.png",
   "main": "installed-fonts.js",

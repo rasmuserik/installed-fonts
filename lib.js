@@ -44,7 +44,7 @@ exports.installedFonts = _asyncToGenerator(function* () {
   // Try to get the fonts via fc-list (should work on linux etc.)
 
   try {
-    execSync = require('child_process').execSync;
+    execSync = (typeof window === 'object' && window.require && window.require('child_process') || require('child_process')).execSync;
     let fontList = execSync('fc-list', { encoding: 'utf-8' }).split('\n').map(function (s) {
       return s.split(':')[1];
     }).join(',').split(',').map(function (s) {
